@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   static targets = ["element"];
   static values = {
-    duration: { type: Number, default: 1500 },
+    duration: { type: Number, default: 500 },
     delay: { type: Number, default: 0 },
     trigger: { type: String, default: "connect" },
   };
@@ -15,7 +15,7 @@ export default class extends Controller {
 
     // Animate based on trigger type
     if (this.triggerValue === "connect") {
-      this.startFadeIn();
+      this.startZoomOut();
     } else if (this.triggerValue === "scroll") {
       this.setupScrollObserver();
     }
@@ -23,12 +23,14 @@ export default class extends Controller {
 
   setupInitialState() {
     this.element.style.opacity = "0";
-    this.element.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
+    this.element.style.scale = "1.25";
+    this.element.style.transition = `opacity ${this.durationValue}ms ease-out, scale ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
   }
 
-  startFadeIn() {
+  startZoomOut() {
     setTimeout(() => {
       this.element.style.opacity = "1";
+      this.element.style.scale = "1";
     }, this.delayValue);
   }
 
@@ -42,7 +44,7 @@ export default class extends Controller {
       entry.isIntersecting &&
       entry.intersectionRatio > this.previousIntersectionRatio
     ) {
-      this.startFadeIn();
+      this.startZoomOut();
     }
     this.previousY = entry.boundingClientRect.y;
     this.previousIntersectionRatio = entry.intersectionRatio;

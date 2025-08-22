@@ -1,5 +1,4 @@
 class EffectsController < ApplicationController
-  def fade_in
-    @title = "Fade In Effect"
+  def index
   end
 end
