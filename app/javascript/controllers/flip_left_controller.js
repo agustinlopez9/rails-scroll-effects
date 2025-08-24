@@ -15,7 +15,7 @@ export default class extends Controller {
 
     // Animate based on trigger type
     if (this.triggerValue === "connect") {
-      this.startFadeIn();
+      this.startFlipLeft();
     } else if (this.triggerValue === "scroll") {
       this.setupScrollObserver();
     }
@@ -23,26 +23,22 @@ export default class extends Controller {
 
   setupInitialState() {
     this.element.style.opacity = "0";
+    this.element.style.transform = "perspective(600px) rotateY(-90deg)";
     this.element.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
   }
 
-  startFadeIn() {
+  startFlipLeft() {
     setTimeout(() => {
+      this.element.style.transform = "perspective(600px) rotateY(0deg)";
       this.element.style.opacity = "1";
     }, this.delayValue);
   }
 
   handleElementIntersect = (entry) => {
-    if (
-      entry.boundingClientRect.y >= 0 &&
-      entry.intersectionRatio < this.previousIntersectionRatio
-    ) {
+    if (entry.isIntersecting) {
+      this.startFlipLeft();
+    } else {
       this.setupInitialState();
-    } else if (
-      entry.isIntersecting &&
-      entry.intersectionRatio > this.previousIntersectionRatio
-    ) {
-      this.startFadeIn();
     }
     this.previousY = entry.boundingClientRect.y;
     this.previousIntersectionRatio = entry.intersectionRatio;
