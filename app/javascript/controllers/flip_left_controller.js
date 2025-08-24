@@ -22,34 +22,40 @@ export default class extends Controller {
   }
 
   setupInitialState() {
-    this.element.style.opacity = "0";
-    this.element.style.transform = "perspective(600px) rotateY(-90deg)";
-    this.element.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
+    const childElement = this.element.children[0];
+    childElement.style.opacity = "0";
+    childElement.style.transform = "perspective(600px) rotateY(-90deg)";
+    childElement.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
   }
 
   startFlipLeft() {
+    const childElement = this.element.children[0];
     setTimeout(() => {
-      this.element.style.transform = "perspective(600px) rotateY(0deg)";
-      this.element.style.opacity = "1";
+      childElement.style.opacity = "1";
+      childElement.style.transform = "perspective(600px) rotateY(0deg)";
     }, this.delayValue);
   }
 
   handleElementIntersect = (entry) => {
-    if (entry.isIntersecting) {
+    if (
+      entry.isIntersecting &&
+      entry.intersectionRatio >= this.previousIntersectionRatio
+    ) {
       this.startFlipLeft();
-    } else {
+    } else if (
+      entry.boundingClientRect.y >= 0 &&
+      entry.intersectionRatio < this.previousIntersectionRatio
+    ) {
       this.setupInitialState();
     }
-    this.previousY = entry.boundingClientRect.y;
     this.previousIntersectionRatio = entry.intersectionRatio;
   };
 
   setupScrollObserver() {
-    const observer = new IntersectionObserver(
+    this.intersectionObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
           this.handleElementIntersect(entry);
-          this.observer.unobserve(entry.target);
         });
       },
       {
@@ -58,6 +64,16 @@ export default class extends Controller {
       }
     );
 
-    observer.observe(this.element);
+    this.intersectionObserver.observe(this.element);
+  }
+
+  stopIntersectionObserver() {
+    if (this.intersectionObserver) {
+      this.intersectionObserver.unobserve(this.element);
+    }
+  }
+
+  disconnect() {
+    this.stopIntersectionObserver();
   }
 }

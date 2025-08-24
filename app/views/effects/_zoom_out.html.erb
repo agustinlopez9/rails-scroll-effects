@@ -1,11 +1,13 @@
 <div class="py-16">
   <h3 class="font-bold text-4xl">Zoom-out</h3>
-  <div class="my-20 w-96 h-96 rounded-lg ">
-    <div data-controller="zoom-out" 
-        data-zoom-out-duration-value="250" 
-        data-zoom-out-delay-value="200"
-        data-zoom-out-trigger-value="scroll"
-        class="w-full h-full flex items-center justify-center text-white text-xl font-semibold rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg"
-    />
+  <div 
+    class="my-20"
+    data-controller="zoom-out" 
+    data-zoom-out-duration-value="350" 
+    data-zoom-out-delay-value="200"
+    data-zoom-out-trigger-value="scroll"
+  >
+    <!-- ONLY ONE CHILD PER ANIMATION PARENT -->
+    <div class="flex items-center justify-center w-96 h-96 text-white text-xl font-semibold rounded-lg bg-gradient-to-br from-blue-500 to-indigo-600 shadow-lg" />
   </div>
 </div>

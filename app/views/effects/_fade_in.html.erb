@@ -1,11 +1,14 @@
 <div class="py-16">
   <h3 class="font-bold text-4xl">Fade-in</h3>
-  <div class="my-20 w-96 h-96 rounded-lg ">
-    <div data-controller="fade-in" 
-        data-fade-in-duration-value="500" 
-        data-fade-in-delay-value="200"
-        data-fade-in-trigger-value="scroll"
-        class="w-full h-full flex items-center justify-center text-white text-xl font-semibold rounded-lg bg-gradient-to-br from-green-500 to-teal-600 shadow-lg"
+  <div 
+    class="my-20"
+    data-controller="fade-in" 
+    data-fade-in-duration-value="350" 
+    data-fade-in-delay-value="200"
+    data-fade-in-trigger-value="scroll"
+  >
+    <!-- ONLY ONE CHILD PER ANIMATION PARENT -->
+    <div class="flex items-center justify-center w-96 h-96 text-white text-xl font-semibold rounded-lg bg-gradient-to-br from-green-500 to-teal-600 shadow-lg"
     />
   </div>
 </div>
