@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+body {
+  background: linear-gradient(
+    to top,
+    rgb(55, 65, 81),
+    rgb(17, 24, 39),
+    rgb(0, 0, 0)
+  );
+  background-attachment: fixed;
+  color: white;
+}
+
+.code-example {
+  @apply font-medium text-sm bg-slate-700 border-slate-500 border-l p-4 w-[1000px] max-h-[600px] overflow-y-scroll whitespace-pre-wrap break-words;
+}
+
+@layer components {
+  .example-tab {
+    @apply font-semibold text-sm p-4 bg-slate-800 border-slate-500 border-b cursor-pointer;
+  }
+  
+  .selected-tab {
+    @apply bg-slate-700 border border-b-0 cursor-pointer;
+  }
+}

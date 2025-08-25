@@ -1,0 +1,19 @@
+<div
+  data-controller="tabs"
+  data-tabs-active-class="selected-tab"
+  data-tabs-hidden-class="hidden"
+  data-tabs-default-tab-value="html"
+>
+  <ul class="flex flex-row">
+    <li data-tabs-target="tab" data-action="click->tabs#select" data-tab-id="html" class="example-tab">_<%= effect_name %>.html.erb</li>
+    <li data-tabs-target="tab" data-action="click->tabs#select" data-tab-id="js" class="example-tab"><%= effect_name %>_controller.js</li>
+  </ul>
+
+  <div data-tabs-target="content" data-tab-id="html">
+    <%= code_partial("#{effect_name}", "html.erb") %>
+  </div>
+
+  <div data-tabs-target="content" data-tab-id="js">
+    <%= code_partial("#{effect_name}", "js") %>
+  </div>
+</div>
