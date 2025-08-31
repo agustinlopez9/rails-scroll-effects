@@ -1,0 +1,12 @@
+version: "3.8"
+
+services:
+  web:
+    build: .
+    volumes:
+      - ./log:/home/app/rails-scroll-effects/log
+    secrets:
+      - source: master_key
+        target: /home/app/rails-scroll-effects/config/master.key
+    ports:
+      - "8001:80"

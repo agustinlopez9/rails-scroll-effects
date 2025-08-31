@@ -64,6 +64,7 @@ Rails.application.configure do
   # want to log everything, set the level to "debug".
   config.log_level = ENV.fetch("RAILS_LOG_LEVEL", "info")
 
+  config.secret_key_base = ENV["SECRET_KEY_BASE"]
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
 
