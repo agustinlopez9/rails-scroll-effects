@@ -1,0 +1,9 @@
+<%= example_layout_partial("Slide") do %>
+  <div data-controller="direction">
+    <div data-direction-target="container">
+      <%= render 'slide', direction_value: 'up' %>
+    </div>
+    <%= render 'examples/direction_selector' %>
+  </div>
+  <%= render ('examples/example_block'), effect_name: 'slide' %>
+<% end %>

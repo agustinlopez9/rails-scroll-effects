@@ -1,0 +1,11 @@
+<div 
+  data-controller="slide"
+  data-slide-duration-value="350"
+  data-slide-delay-value="100"
+  data-slide-direction-value="<%= direction_value %>"
+  data-slide-trigger-value="scroll"
+  data-action="click->slide#click direction:changed->slide#click"
+>
+  <%# ONLY ONE CHILD PER ANIMATION PARENT %>
+  <div class="effect-box bg-gradient-to-br from-red-500 to-rose-600"></div>
+</div>
