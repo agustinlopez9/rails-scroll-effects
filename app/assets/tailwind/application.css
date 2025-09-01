@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+@theme {
+  --breakpoint-xs: 480px;
+}
+
 body {
   background: linear-gradient(
     to top,
@@ -12,14 +16,18 @@ body {
 }
 
 .code-example {
-  @apply font-medium text-sm bg-slate-700 border-slate-500 border-l p-4 w-[1000px] max-h-[600px] overflow-y-scroll whitespace-pre-wrap break-words;
+  @apply font-medium md:text-sm text-xs bg-slate-700 border-slate-500 border-l p-4 2xl:w-[1000px] lg:w-[800px] sm:w-[600px] xs:w-[450px] w-[350px] max-h-[600px] overflow-y-scroll whitespace-pre-wrap break-words;
 }
 
 @layer components {
-  .example-tab {
-    @apply font-semibold text-sm p-4 bg-slate-800 border-slate-500 border-b cursor-pointer;
+  .effect-box {
+    @apply w-64 h-64 md:w-80 md:h-80 2xl:w-96 2xl:h-96 rounded-lg shadow-lg;
   }
-  
+
+  .example-tab {
+    @apply font-semibold md:text-sm text-xs p-4 bg-slate-800 border-slate-500 border-b cursor-pointer;
+  }
+
   .selected-tab {
     @apply bg-slate-700 border border-b-0 cursor-pointer;
   }

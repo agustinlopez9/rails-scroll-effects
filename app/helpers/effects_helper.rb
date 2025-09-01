@@ -14,7 +14,7 @@ module EffectsHelper
   def example_layout_partial(title = "")
     content_tag :div, class: "py-4 my-4" do
       content = content_tag :h3, title, class: "font-bold text-4xl"
-      content += content_tag :div, class: "flex flex-row flex-wrap items-start justify-between gap-4 h-full my-20 pb-20" do
+      content += content_tag :div, class: "flex flex-row flex-wrap xl:items-start xl:justify-between xl:gap-4 items-center justify-center gap-24 h-full my-20 pb-20" do
         yield
       end
     end
