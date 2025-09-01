@@ -16,7 +16,7 @@ body {
 }
 
 .code-example {
-  @apply font-medium md:text-sm text-xs bg-slate-700 border-slate-500 border-l p-4 2xl:w-[1000px] lg:w-[800px] sm:w-[600px] xs:w-[450px] w-[350px] max-h-[600px] overflow-y-scroll whitespace-pre-wrap break-words;
+  @apply w-[350px] max-h-[600px] p-4 font-medium text-xs whitespace-pre-wrap break-words bg-slate-700 border-l border-slate-500 overflow-y-scroll xs:w-[450px] sm:w-[600px] md:text-sm lg:w-[800px] 2xl:w-[1000px];
 }
 
 @layer components {
