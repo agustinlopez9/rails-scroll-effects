@@ -1,20 +1,30 @@
-import { Controller } from "@hotwired/stimulus"
+import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["direction", "container"]
+  static targets = ["direction", "container"];
+  static values = {
+    effect: { type: String },
+  };
 
   select() {
-    this.updateDirection()
+    this.updateDirection();
   }
 
   updateDirection() {
-    const selectedDirection = this.directionTargets.find(input => input === event.currentTarget)?.value
-    const slideElement = this.containerTarget.querySelector('[data-controller="slide"]')
-    if(selectedDirection && slideElement) {
-      slideElement.dataset.slideDirectionValue = selectedDirection
-      slideElement.dispatchEvent(new CustomEvent("direction:changed", {
-        detail: { direction: selectedDirection }
-      }))
+    const effectName = this.effectValue;
+    const selectedDirection = this.directionTargets.find(
+      (input) => input === event.currentTarget
+    )?.value;
+    const effectElement = this.containerTarget.querySelector(
+      `[data-controller="${effectName}"]`
+    );
+    if (selectedDirection && effectElement) {
+      effectElement.dataset[`${effectName}DirectionValue`] = selectedDirection;
+      effectElement.dispatchEvent(
+        new CustomEvent(`${effectName}-direction:changed`, {
+          detail: { direction: selectedDirection },
+        })
+      );
     }
   }
 }

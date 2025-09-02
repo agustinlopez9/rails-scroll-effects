@@ -1,8 +1,8 @@
-<% effect_name = "slide" %>
+<% effect_name = "flip" %>
 <%= example_layout_partial(effect_name.capitalize) do %>
   <div data-controller="direction" data-direction-effect-value="<%= effect_name %>">
     <div data-direction-target="container">
-      <%= render effect_name, direction_value: 'up' %>
+      <%= render effect_name, direction_value: 'left' %>
     </div>
     <%= render ('examples/direction_selector'), effect_name: effect_name %>
   </div>

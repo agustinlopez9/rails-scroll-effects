@@ -4,7 +4,7 @@ const DIRECTIONS = {
   up: "translateY(-20%)",
   down: "translateY(20%)",
   left: "translateX(-20%)",
-  right: "translateX(20%)"
+  right: "translateX(20%)",
 };
 
 export default class extends Controller {
@@ -29,7 +29,7 @@ export default class extends Controller {
       this.setupScrollObserver();
     }
   }
-  
+
   setupInitialState() {
     this.childElement.style.opacity = "0";
     this.childElement.style.transform = DIRECTIONS[this.directionValue];
@@ -48,7 +48,6 @@ export default class extends Controller {
     this.setupInitialState();
     this.startSlide();
   }
-
 
   handleElementIntersect = (entry) => {
     if (

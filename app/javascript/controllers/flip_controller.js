@@ -1,13 +1,22 @@
 import { Controller } from "@hotwired/stimulus";
 
+const DIRECTIONS = {
+  left: "rotateY(-90deg)",
+  right: "rotateY(90deg)",
+  up: "rotateX(90deg)",
+  down: "rotateX(-90deg)",
+};
+
 export default class extends Controller {
   static targets = ["element"];
   static values = {
     duration: { type: Number, default: 500 },
     delay: { type: Number, default: 0 },
+    direction: { type: String, default: "left" },
     trigger: { type: String, default: "connect" },
   };
 
+  childElement = this.element.children[0];
   previousIntersectionRatio = 0;
 
   connect() {
@@ -15,25 +24,32 @@ export default class extends Controller {
 
     // Animate based on trigger type
     if (this.triggerValue === "connect") {
-      this.startFlipLeft();
+      this.startFlip();
     } else if (this.triggerValue === "scroll") {
       this.setupScrollObserver();
     }
   }
 
   setupInitialState() {
-    const childElement = this.element.children[0];
-    childElement.style.opacity = "0";
-    childElement.style.transform = "perspective(600px) rotateY(-90deg)";
-    childElement.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
+    this.childElement.style.opacity = "0";
+    this.childElement.style.transform = `perspective(600px) ${
+      DIRECTIONS[this.directionValue]
+    }`;
   }
 
-  startFlipLeft() {
-    const childElement = this.element.children[0];
+  startFlip() {
     setTimeout(() => {
-      childElement.style.opacity = "1";
-      childElement.style.transform = "perspective(600px) rotateY(0deg)";
+      this.childElement.style.transition = `opacity ${this.durationValue}ms ease-out, transform ${this.durationValue}ms ease-out`;
+      this.childElement.style.opacity = "1";
+      this.childElement.style.transform = "perspective(600px) rotateY(0deg)";
     }, this.delayValue);
+  }
+
+  click() {
+    console.log(this.directionValue);
+    this.childElement.style.transition = "";
+    this.setupInitialState();
+    this.startFlip();
   }
 
   handleElementIntersect = (entry) => {
@@ -41,7 +57,7 @@ export default class extends Controller {
       entry.isIntersecting &&
       entry.intersectionRatio >= this.previousIntersectionRatio
     ) {
-      this.startFlipLeft();
+      this.startFlip();
     } else if (
       entry.boundingClientRect.y >= 0 &&
       entry.intersectionRatio < this.previousIntersectionRatio

@@ -1,0 +1,11 @@
+<div 
+  data-controller="flip" 
+  data-flip-duration-value="350" 
+  data-flip-delay-value="100"
+  data-flip-direction-value="<%= direction_value %>"
+  data-flip-trigger-value="scroll"
+  data-action="click->flip#click flip-direction:changed->flip#click"
+>
+  <%# ONLY ONE CHILD PER ANIMATION PARENT %>
+  <div class="effect-box bg-gradient-to-br from-violet-500 to-fuchsia-600"></div>
+</div>

@@ -1,20 +1,21 @@
+<% label = "#{effect_name}-direction" %>
 <fieldset class="mt-12">
   <ul class="flex justify-evenly">
     <li>
-      <input data-direction-target="direction" data-action="click->direction#select" class="m-1" type="radio" id="slide_direction_up" name="direction" value="up" checked />
-      <label for="slide_direction_up">Up</label>
+      <input data-direction-target="direction" data-action="click->direction#select" class="size-4 m-1" type="radio" id="<%= label %>_up" name="<%= label %>" value="up" checked/>
+      <label class="cursor-pointer" for="<%= label %>_up">Up</label>
     </li>
     <li>
-      <input data-direction-target="direction" data-action="click->direction#select" class="m-1" type="radio" id="slide_direction_down" name="direction" value="down" />
-      <label for="slide_direction_down">Down</label>
+      <input data-direction-target="direction" data-action="click->direction#select" class="size-4 m-1" type="radio" id="<%= label %>_down" name="<%= label %>" value="down" />
+      <label class="cursor-pointer" for="<%= label %>_down">Down</label>
     </li>
     <li>
-      <input data-direction-target="direction" data-action="click->direction#select" class="m-1" type="radio" id="slide_direction_left" name="direction" value="left" />
-      <label for="slide_direction_left">Left</label>
+      <input data-direction-target="direction" data-action="click->direction#select" class="size-4 m-1" type="radio" id="<%= label %>_left" name="<%= label %>" value="left" />
+      <label class="cursor-pointer" for="<%= label %>_left">Left</label>
     </li>
     <li>
-      <input data-direction-target="direction" data-action="click->direction#select" class="m-1" type="radio" id="slide_direction_right" name="direction" value="right" />
-      <label for="slide_direction_right">Right</label>
+      <input data-direction-target="direction" data-action="click->direction#select" class="size-4 m-1" type="radio" id="<%= label %>_right" name="<%= label %>" value="right" />
+      <label class="cursor-pointer" for="<%= label %>_right">Right</label>
     </li>
   </ul>
 </fieldset>
